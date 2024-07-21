@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import Button, { ButtonProps } from './index';
 
 const meta: Meta<typeof Button> = {
-  title: 'Atoms/Button',
+  title: '@3UM-SDK/Button',
   component: Button,
   argTypes: {
     variant: {
