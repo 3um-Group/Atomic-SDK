@@ -1,10 +1,11 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import Button, { ButtonProps } from './index';
+import Button, { ButtonProps } from './Button';
 
 const meta: Meta<typeof Button> = {
   title: '@3UM-SDK/Button',
   component: Button,
+  tags:['autodocs'],
   argTypes: {
     variant: {
       control: 'select',

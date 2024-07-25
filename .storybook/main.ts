@@ -22,6 +22,9 @@ const config: StorybookConfig = {
     name: "@storybook/react-webpack5",
     options: {},
   },
+  docs: {
+    autodocs: true,
+  },
   webpackFinal: async (config) => {
     if (config.module?.rules) {
       // Find and remove the existing rule for CSS files
