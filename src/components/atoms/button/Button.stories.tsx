@@ -5,7 +5,7 @@ import Button, { ButtonProps } from './Button';
 const meta: Meta<typeof Button> = {
   title: '@3UM-SDK/Button',
   component: Button,
-  tags:['autodocs'],
+  tags: ['autodocs'],
   argTypes: {
     variant: {
       control: 'select',
@@ -38,12 +38,14 @@ const Template: StoryFn<ButtonProps> = (args) => <Button {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   children: 'Default Button',
+  theme: 'dark'
 };
 
 
 export const WithAction = Template.bind({});
 WithAction.args = {
-  children: 'Click Me',
+  children: 'Action button',
+  theme: 'dark',
   onClick: () => alert('Button clicked!'),
 };
 

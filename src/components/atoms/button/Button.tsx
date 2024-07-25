@@ -12,8 +12,6 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   /** The size of the button */
   size?: 'sm' | 'md' | 'lg';
   /** The color of the button (if applicable) */
-  color?: string;
-  /** Additional CSS classes */
   className?: string;
   /** The theme of the button */
   theme?: string;
@@ -29,7 +27,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
  * Button component for user interactions
  */
 const Button: React.FC<ButtonProps> = ({
-  variant = 'primary',
+  variant = 'ghost',
   size = 'md',
   theme,
   color,
