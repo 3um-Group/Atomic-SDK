@@ -15,14 +15,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - id: Manual checkout
-        uses: actions/checkout@v4
-
-      - id: Setup Nodejs
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
         with:
           node-version: '16.x'
-
+          
       - id: build-publish-storybook
         with:
           path: build
