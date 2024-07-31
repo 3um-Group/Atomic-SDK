@@ -18,6 +18,9 @@
 .pnp
 .pnp.js
 
+# npm config file
+.npmrc
+
 # Storybook build outputs
 storybook-static/
 
