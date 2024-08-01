@@ -2,7 +2,6 @@ import React, { ChangeEvent } from 'react';
 import FormField from '../../molecules/formfieldwithlabel/FormFieldWithLabel';
 import Button from '../../atoms/button/Button';
 
-
 export interface ContactFormProps {
   onSubmit: () => void;
   onPhoneChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
