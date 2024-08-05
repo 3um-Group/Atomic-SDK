@@ -1,28 +1,49 @@
 // Header.tsx
 import React, { useState } from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
 import * as UI from 'react-daisyui';
 import Logo, { LogoProps } from '../../atoms/logo/Logo';
 import NavItem from '../../molecules/nav-item/NavItem';
 import { LoginButton, LogoutButton } from '../../molecules/auth-elements/AuthElements';
+import { useAuth0 } from '@auth0/auth0-react'; // Use the real Auth0 hook
+
+
+
+
+// Define a custom hook interface
+export interface UseAuthResult {
+  isAuthenticated: boolean;
+  loginWithRedirect: () => void;
+  logout: () => void;
+}
+
+// Create a default implementation that uses the real Auth0 hook
+export const useAuth = (): UseAuthResult => {
+  const auth0 = useAuth0();
+  return {
+    isAuthenticated: auth0.isAuthenticated,
+    loginWithRedirect: auth0.loginWithRedirect,
+    logout: auth0.logout,
+  };
+};
 
 interface HeaderProps {
   showNavItems?: boolean;
   showAuthElements?: boolean;
   logoProps: Omit<LogoProps, 'className'>;
-  theme?: string; // Add a theme prop
+  theme?: string;
+  useAuth?: () => UseAuthResult; 
 }
 
 const Header: React.FC<HeaderProps> = ({
   showNavItems = true,
   showAuthElements = true,
   logoProps,
-  theme
+  theme,
+  useAuth: useAuthProp = useAuth // Use the prop if provided, otherwise use the default
 }) => {
-  const { isAuthenticated } = useAuth0();
-  // console.log("Header isAuthenticated:", isAuthenticated);
+  const { isAuthenticated } = useAuthProp();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  console.log("isAuth",isAuthenticated,showAuthElements)
   return (
     <UI.Navbar className={`bg-white shadow-md ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
       <UI.Navbar.Start className='flex items-center space-x-5'>
@@ -43,7 +64,7 @@ const Header: React.FC<HeaderProps> = ({
 
       <UI.Navbar.End >
         {showAuthElements && (
-          <div className='hidden md'>
+          <div>
             {isAuthenticated ? <LogoutButton theme={theme} /> : <LoginButton theme={theme} />}
           </div>
         )}
