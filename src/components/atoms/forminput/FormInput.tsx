@@ -28,11 +28,11 @@ const FormInput: React.FC<FormInputProps> = ({
   onFocus, // Add onFocus prop
   onBlur, // Add onBlur prop
 }) => {
-  const baseClass = 'w-full p-2 mb-2 border rounded text-base focus:outline-none focus:ring-2 focus:ring-blue-500';
+  const baseClass = 'w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-gray-500 placeholder-gray-500';
   const combinedClassName = `${baseClass} ${className}`;
-  
+
   return multiline ? (
-    <textarea
+    <UI.Textarea
       placeholder={placeholder}
       value={value}
       onChange={onChange}
@@ -44,7 +44,7 @@ const FormInput: React.FC<FormInputProps> = ({
       onBlur={onBlur} // Add onBlur
     />
   ) : (
-    <input
+    <UI.Input
       type={type}
       placeholder={placeholder}
       value={value}

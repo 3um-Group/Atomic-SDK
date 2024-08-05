@@ -18,6 +18,7 @@ Default.args = {
   onChange: () => {},
 };
 
+
 export const Email = Template.bind({});
 Email.args = {
   label: 'Email',

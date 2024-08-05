@@ -7,7 +7,7 @@ export interface FormFieldWithLabelProps extends FormInputProps {
   id: string; // Ensure id is always required and is a string
 }
 
-const FormFieldWithLabel: React.FC<FormFieldWithLabelProps> = ({ label, id, value, ...inputProps }) => {
+const FormFieldWithLabel: React.FC<FormFieldWithLabelProps> = ({ label, id, value, placeholder, ...inputProps }) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const handleFocus = () => {
@@ -27,22 +27,24 @@ const FormFieldWithLabel: React.FC<FormFieldWithLabelProps> = ({ label, id, valu
   }, [value]);
 
   return (
-    <div className="relative mb-6">
+    <div className="relative mb-3">
+      <FormInput
+        id={id}
+        value={value}
+        placeholder={isFocused || value ? '' : placeholder}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        {...inputProps}
+        className="pt-6"
+      />
       <Label
         htmlFor={id}
-        className={`absolute left-2 transition-all duration-200 transform  ${
-          isFocused || value ? '-translate-y-6 scale-90 text-slate-800' : 'translate-y-2 text-gray-400'
+        className={`absolute left-2 top-1 transition-all duration-200 transform  px-1 ${
+          isFocused || value ? 'scale-90 -translate-y-1 text-xs text-black' : ''
         }`}
       >
         {label}
       </Label>
-      <FormInput
-        id={id}
-        value={value}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        {...inputProps}
-      />
     </div>
   );
 };
