@@ -1,4 +1,3 @@
-// Header.stories.tsx
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import Header from './Header';
@@ -9,11 +8,15 @@ const meta: Meta<typeof Header> = {
   component: Header,
   tags: ['autodocs'],
   decorators: [
-    (Story, context) => (
-      <MockAuth0Provider mockProps={context.parameters.auth0}>
-        <Story />
-      </MockAuth0Provider>
-    ),
+    (Story, context) => {
+      // Add theme class to the HTML or body element
+      document.documentElement.className = context.args.theme || '';
+      return (
+        <MockAuth0Provider mockProps={context.parameters.auth0}>
+          <Story />
+        </MockAuth0Provider>
+      );
+    },
   ],
   argTypes: {
     logoProps: {
@@ -35,8 +38,6 @@ export default meta;
 type Story = StoryObj<typeof Header>;
 
 const defaultLogoProps = {
-  lightSrc: 'https://placeholder.com/logo-light.png',
-  darkSrc: 'https://placeholder.com/logo-dark.png',
   alt: 'Company Logo',
   theme: 'light' as const,
   width: 50,
@@ -48,7 +49,7 @@ export const LogoOnly: Story = {
     logoProps: defaultLogoProps,
     showNavItems: false,
     showAuthElements: false,
-    theme: 'theme-light', // Pass the theme prop
+    theme: 'light', // Pass the theme prop
   },
 };
 
