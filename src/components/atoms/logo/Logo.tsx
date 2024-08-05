@@ -24,7 +24,7 @@ const Logo: React.FC<LogoProps> = ({
 }) => {
   const lightSrc = customLightSrc || defaultLightLogo;
   const darkSrc = customDarkSrc || defaultDarkLogo;
-
+  console.log("theme in logo", theme)
   return (
     <img
       src={theme === 'light' ? lightSrc : darkSrc}

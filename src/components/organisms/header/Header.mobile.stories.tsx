@@ -1,10 +1,11 @@
+// HeaderMobile.stories.tsx
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import Header from './Header';
 import { MockAuth0Provider } from '../../../utils/mockAuth0Context'; // Adjust the import path as needed
 
 const meta: Meta<typeof Header> = {
-  title: '@3UM-SDK/Header',
+  title: '@3UM-SDK/Header/Mobile',
   component: Header,
   tags: ['autodocs'],
   decorators: [
@@ -13,11 +14,18 @@ const meta: Meta<typeof Header> = {
       document.documentElement.className = context.args.theme || '';
       return (
         <MockAuth0Provider mockProps={context.parameters.auth0}>
-          <Story />
+          <div className="w-full md:w-1/3">
+            <Story />
+          </div>
         </MockAuth0Provider>
       );
     },
   ],
+  parameters: {
+    viewport: {
+      defaultViewport: 'mobile2',
+    },
+  },
   argTypes: {
     logoProps: {
       theme: {
