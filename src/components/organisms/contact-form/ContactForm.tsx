@@ -1,7 +1,6 @@
 import React, { ChangeEvent } from 'react';
-import FormField from '../../molecules/formfieldwithlabel/FormFieldWithLabel';
+import FormFieldWithLabel from '../../molecules/formfieldwithlabel/FormFieldWithLabel';
 import Button from '../../atoms/button/Button';
-
 
 export interface ContactFormProps {
   onSubmit: () => void;
@@ -28,22 +27,21 @@ const ContactForm: React.FC<ContactFormProps> = ({
 }) => {
   return (
     <div className={`p-5 border border-gray-300 rounded-lg shadow-md ${className}`}>
-      <FormField
+      <FormFieldWithLabel
         label="Phone"
         id="phone"
         type="tel"
         value={phone}
         onChange={onPhoneChange}
       />
-      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
-      <FormField
+      <FormFieldWithLabel
         label="Email"
         id="email"
         type="email"
         value={email}
         onChange={onEmailChange}
       />
-      <FormField
+      <FormFieldWithLabel
         label="Message"
         id="message"
         multiline
@@ -51,7 +49,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
         onChange={onMessageChange}
       />
      
-      <Button className="w-full bg-blue-950 text-white py-2 px-4 rounded mt-4" onClick={onSubmit}>
+      <Button className="w-full bg-blue-950 text-white py-2 px-4 rounded mt-1" onClick={onSubmit} size="sm">
         Request Info
       </Button>
     </div>
