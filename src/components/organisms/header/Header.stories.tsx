@@ -1,20 +1,11 @@
-// Header.stories.tsx
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import Header from './Header';
-import { MockAuth0Provider } from '../../../utils/mockAuth0Context'; // Adjust the import path as needed
+import Header, { UseAuthResult } from './Header';
 
 const meta: Meta<typeof Header> = {
   title: '@3UM-SDK/Header',
   component: Header,
   tags: ['autodocs'],
-  decorators: [
-    (Story, context) => (
-      <MockAuth0Provider mockProps={context.parameters.auth0}>
-        <Story />
-      </MockAuth0Provider>
-    ),
-  ],
   argTypes: {
     logoProps: {
       theme: {
@@ -26,7 +17,7 @@ const meta: Meta<typeof Header> = {
     },
     theme: {
       control: 'select',
-      options: ['light', 'dark'], // Adjust to match DaisyUI themes
+      options: ['light', 'dark'],
     },
   },
 };
@@ -35,12 +26,19 @@ export default meta;
 type Story = StoryObj<typeof Header>;
 
 const defaultLogoProps = {
-  lightSrc: 'https://placeholder.com/logo-light.png',
-  darkSrc: 'https://placeholder.com/logo-dark.png',
   alt: 'Company Logo',
   theme: 'light' as const,
   width: 50,
   height: 50,
+};
+
+// Create mock auth hooks
+const createMockUseAuth = (isAuthenticated: boolean): () => UseAuthResult => {
+  return () => ({
+    isAuthenticated,
+    loginWithRedirect: () => console.log('Login clicked'),
+    logout: () => console.log('Logout clicked'),
+  });
 };
 
 export const LogoOnly: Story = {
@@ -48,7 +46,8 @@ export const LogoOnly: Story = {
     logoProps: defaultLogoProps,
     showNavItems: false,
     showAuthElements: false,
-    theme: 'theme-light', // Pass the theme prop
+    theme: 'light',
+    useAuth: createMockUseAuth(false),
   },
 };
 
@@ -57,7 +56,8 @@ export const LogoOnlyDarkTheme: Story = {
     logoProps: { ...defaultLogoProps, theme: 'dark' },
     showNavItems: false,
     showAuthElements: false,
-    theme: 'dark', // Pass the theme prop
+    theme: 'dark',
+    useAuth: createMockUseAuth(false),
   },
 };
 
@@ -66,7 +66,8 @@ export const LogoAndNavItems: Story = {
     logoProps: defaultLogoProps,
     showNavItems: true,
     showAuthElements: false,
-    theme: 'light', // Pass the theme prop
+    theme: 'light',
+    useAuth: createMockUseAuth(false),
   },
 };
 
@@ -75,12 +76,8 @@ export const FullHeaderLoggedOut: Story = {
     logoProps: defaultLogoProps,
     showNavItems: true,
     showAuthElements: true,
-    theme: 'light', // Pass the theme prop
-  },
-  parameters: {
-    auth0: {
-      isAuthenticated: false,
-    },
+    theme: 'light',
+    useAuth: createMockUseAuth(false),
   },
 };
 
@@ -89,11 +86,7 @@ export const FullHeaderLoggedIn: Story = {
     logoProps: defaultLogoProps,
     showNavItems: true,
     showAuthElements: true,
-    theme: 'light', // Pass the theme prop
-  },
-  parameters: {
-    auth0: {
-      isAuthenticated: true,
-    },
+    theme: 'light',
+    useAuth: createMockUseAuth(true),
   },
 };

@@ -1,20 +1,13 @@
 import React from 'react';
 import { Meta, StoryFn, StoryObj } from '@storybook/react';
 import { LoginButton, LogoutButton, AuthButtonProps } from './AuthElements';
-import { MockAuth0Provider } from '../../../utils/mockAuth0Context';
+import { LoggedInDecorator, LoggedOutDecorator } from './decorators';
 
 
 
 const meta: Meta = {
     title: '@3UM-SDK/AuthElements',
-    tags: ['autodocs'],
-    decorators: [
-        (Story, context) => (
-            <MockAuth0Provider mockProps={context.parameters.auth0}>
-                <Story />
-            </MockAuth0Provider>
-        ),
-    ],
+    tags: ['autodocs']
 };
 
 export default meta;
@@ -34,6 +27,7 @@ Login.argTypes = {
         options: ['light', 'dark', 'cupcake', 'bumblebee', 'emerald', 'corporate', 'synthwave', 'retro', 'cyberpunk'],
     },
 }
+Login.decorators = [LoggedOutDecorator]
 
 const LogoutTemplate: StoryFn<AuthButtonProps> = (args) => <LogoutButton {...args} />;
 export const Logout = LogoutTemplate.bind({});
@@ -47,4 +41,5 @@ Logout.argTypes = {
         options: ['light', 'dark', 'cupcake', 'bumblebee', 'emerald', 'corporate', 'synthwave', 'retro', 'cyberpunk'],
     },
 }
+Logout.decorators = [LoggedInDecorator]
 
