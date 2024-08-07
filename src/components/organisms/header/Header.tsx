@@ -43,7 +43,6 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuthProp();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  console.log("isAuth",isAuthenticated,showAuthElements)
   return (
     <UI.Navbar className={`bg-white shadow-md ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
       <UI.Navbar.Start className='flex items-center space-x-5'>
