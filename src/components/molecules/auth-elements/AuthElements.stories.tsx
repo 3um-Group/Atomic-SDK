@@ -2,7 +2,7 @@ import React from 'react';
 import { Meta, StoryFn, StoryObj } from '@storybook/react';
 import { LoginButton, LogoutButton, AuthButtonProps } from './AuthElements';
 import { LoggedInDecorator, LoggedOutDecorator } from './decorators';
-
+import { action } from '@storybook/addon-actions';
 
 
 const meta: Meta = {
@@ -19,7 +19,8 @@ const LoginTemplate: StoryFn<AuthButtonProps> = (args) => <LoginButton {...args}
 // type Story = StoryObj;
 export const Login = LoginTemplate.bind({});
 Login.args = {
-    theme: 'dark'
+    theme: 'dark',
+    onAuth: action('Login button clicked'),
 }
 Login.argTypes = {
     theme: {
@@ -33,6 +34,7 @@ const LogoutTemplate: StoryFn<AuthButtonProps> = (args) => <LogoutButton {...arg
 export const Logout = LogoutTemplate.bind({});
 Logout.args = {
     theme: 'dark',
+    onAuth: action('Logout button clicked'),
 }
 
 Logout.argTypes = {

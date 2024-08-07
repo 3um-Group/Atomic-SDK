@@ -41,7 +41,7 @@ const Header: React.FC<HeaderProps> = ({
   theme,
   useAuth: useAuthProp = useAuth // Use the prop if provided, otherwise use the default
 }) => {
-  const { isAuthenticated } = useAuthProp();
+  const { isAuthenticated, loginWithRedirect, logout } = useAuthProp();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   console.log("isAuth",isAuthenticated,showAuthElements)
   return (
@@ -51,9 +51,9 @@ const Header: React.FC<HeaderProps> = ({
         {/* <div > */}
         {showNavItems && (
           <nav className='hidden md:flex space-x-6'>
-            <NavItem href="/" >Home</NavItem>
-            <NavItem href="/about">About</NavItem>
-            <NavItem href="/contact">Contact</NavItem>
+            <NavItem href="/" >Buy</NavItem>
+            <NavItem href="/about">Stake</NavItem>
+            <NavItem href="/contact">Farm</NavItem>
           </nav>
         )}
         {/* </div> */}
@@ -65,7 +65,7 @@ const Header: React.FC<HeaderProps> = ({
       <UI.Navbar.End >
         {showAuthElements && (
           <div>
-            {isAuthenticated ? <LogoutButton theme={theme} /> : <LoginButton theme={theme} />}
+            {isAuthenticated ? <LogoutButton theme={theme} onAuth={logout}  /> : <LoginButton theme={theme} onAuth={loginWithRedirect} />}
           </div>
         )}
         <button
@@ -88,7 +88,7 @@ const Header: React.FC<HeaderProps> = ({
           <div className="mt-4">
             {showAuthElements && (
               <>
-                {isAuthenticated ? <LogoutButton theme={theme} /> : <LoginButton theme={theme} />}
+                {isAuthenticated ? <LogoutButton theme={theme} onAuth={logout} /> : <LoginButton theme={theme} onAuth={loginWithRedirect} />}
               </>
             )}
           </div>
