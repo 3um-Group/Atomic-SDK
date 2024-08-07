@@ -12,27 +12,40 @@ const Template: StoryFn<FormFieldWithLabelProps> = (args) => <FormFieldWithLabel
 export const Default = Template.bind({});
 Default.args = {
   label: 'Name',
-  id: 'name-input', // Provide id
+  id: 'name-input',
   type: 'text',
   value: '',
   onChange: () => {},
+  theme: 'light', // Provide theme prop
 };
 
-
-export const Email = Template.bind({});
-Email.args = {
-  label: 'Email',
-  id: 'email-input', // Provide id
-  type: 'email',
+export const DarkTheme = Template.bind({});
+DarkTheme.args = {
+  label: 'Name',
+  id: 'name-input-dark',
+  type: 'text',
   value: '',
   onChange: () => {},
+  theme: 'dark', // Provide dark theme
 };
+
 
 export const Message = Template.bind({});
 Message.args = {
   label: 'Message',
-  id: 'message-input', // Provide id
+  id: 'message-input',
   multiline: true,
   value: '',
   onChange: () => {},
+  theme: 'light',
+};
+
+export const MessageDark = Template.bind({});
+MessageDark.args = {
+  label: 'Message',
+  id: 'message-input-dark',
+  multiline: true,
+  value: '',
+  onChange: () => {},
+  theme: 'dark',
 };

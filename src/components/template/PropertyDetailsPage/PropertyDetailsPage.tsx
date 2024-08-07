@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import PropertyDetailsCard from '../molecules/property-card/PropertyDetailsCard';
-import ContactForm from '../organisms/contact-form/ContactForm';
-import Image from '../atoms/image/Image';
+import React, { useState } from "react";
+import PropertyDetailsCard from "../../molecules/property-card/PropertyDetailsCard";
+import ContactForm from "../../organisms/contact-form/ContactForm";
+import Image from "../../atoms/image/Image";
 
 export interface PropertyDetailsPageProps {
   imageUrl: string;
@@ -18,6 +18,7 @@ export interface PropertyDetailsPageProps {
   initialPhone: string;
   initialEmail: string;
   initialMessage: string;
+  theme?: "light" | "dark"; // Add theme prop
 }
 
 const PropertyDetailsPage: React.FC<PropertyDetailsPageProps> = ({
@@ -34,38 +35,42 @@ const PropertyDetailsPage: React.FC<PropertyDetailsPageProps> = ({
   location,
   initialPhone,
   initialEmail,
-  initialMessage
+  initialMessage,
+  theme = "light", // Default theme to light
 }) => {
   const [phone, setPhone] = useState(initialPhone);
   const [email, setEmail] = useState(initialEmail);
   const [message, setMessage] = useState(initialMessage);
 
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handlePhoneChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setPhone(e.target.value);
   };
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleEmailChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setEmail(e.target.value);
   };
 
-  const handleMessageChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleMessageChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setMessage(e.target.value);
   };
 
-  const handleSubmit = () => {
-    // Handle form submission
-    console.log('Form submitted:', { phone, email, message });
-  };
+  const handleSubmit = () => {};
+
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="max-w-4xl mx-auto bg-white rounded-lg overflow-hidden">
+    <div className={`container mx-auto p-4`}>
+      <div className="max-w-4xl mx-auto rounded-lg overflow-hidden">
         <div className="w-full">
           <Image
             src={imageUrl}
             alt="Property Image"
             zoomOnFocus={true}
-            className="w-full"
           />
         </div>
         <div className="pt-5">
@@ -82,6 +87,7 @@ const PropertyDetailsPage: React.FC<PropertyDetailsPageProps> = ({
                 description={description}
                 propertyLink={propertyLink}
                 location={location}
+                theme={theme}
               />
             </div>
             <div className="lg:w-1/4 lg:pl-4 lg:mt-0 mt-4">
@@ -93,8 +99,7 @@ const PropertyDetailsPage: React.FC<PropertyDetailsPageProps> = ({
                 phone={phone}
                 email={email}
                 message={message}
-                error=""
-                className="shadow-lg p-4 rounded-lg"
+                theme={theme}
               />
             </div>
           </div>
