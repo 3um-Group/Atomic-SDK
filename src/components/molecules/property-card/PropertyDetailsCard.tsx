@@ -13,6 +13,7 @@ export interface PropertyDetailsCardProps {
   description: string;
   propertyLink: string;
   location: string;
+  theme?: 'light' | 'dark'; // Add theme prop
 }
 
 const PropertyDetailsCard: React.FC<PropertyDetailsCardProps> = ({
@@ -24,29 +25,33 @@ const PropertyDetailsCard: React.FC<PropertyDetailsCardProps> = ({
   baths,
   sqft,
   description,
-  propertyLink,
   location,
+  theme = 'light', // Default theme to light
 }) => {
+  const textClass = theme === 'dark' ? 'text-white' : 'text-black';
+  const subTextClass = theme === 'dark' ? 'text-gray-400' : 'text-gray-700';
+  const iconClass = theme === 'dark' ? 'text-white' : 'text-black';
+
   return (
     <div>
       <div className="flex justify-between items-start mb-4">
         <div>
-          <h1 className="text-xl font-semibold mb-1">{address}</h1>
-          <p className="text-gray-500 mb-3 text-sm">{location}</p> 
-          <div className="flex items-center text-black space-x-4 mb-2 lg:mb-0">
-            <span className="text-sm"><FontAwesomeIcon icon={faBed} /> {beds} Beds</span>
-            <span className="text-sm"><FontAwesomeIcon icon={faBath} /> {baths} Baths</span>
-            <span className="text-sm"><FontAwesomeIcon icon={faRulerCombined} /> {sqft} sqft</span>
+          <h1 className={`text-xl font-semibold mb-1 ${textClass}`}>{address}</h1>
+          <p className={`mb-3 text-sm ${subTextClass}`}>{location}</p> 
+          <div className={`flex items-center ${textClass} space-x-4 mb-2 lg:mb-0`}>
+            <span className="text-sm"><FontAwesomeIcon icon={faBed} className={iconClass} /> {beds} Beds</span>
+            <span className="text-sm"><FontAwesomeIcon icon={faBath} className={iconClass} /> {baths} Baths</span>
+            <span className="text-sm"><FontAwesomeIcon icon={faRulerCombined} className={iconClass} /> {sqft} sqft</span>
           </div>
         </div>
         <div className="text-right">
-          <h2 className="text-xl font-bold text-black mb-1">{price}</h2>
-          <p className="text-gray-500 line-through">{originalPrice}</p>
-          <p className="text-gray-500 text-sm">{mortgage}</p>
+          <h2 className={`text-xl font-bold mb-1 ${textClass}`}>{price}</h2>
+          <p className={`line-through ${subTextClass}`}>{originalPrice}</p>
+          <p className={`text-sm ${subTextClass}`}>{mortgage}</p>
         </div>
       </div>
-      <h2 className="text-lg font-semibold mb-2">Description</h2>
-      <p className="mb-4 text-gray-700 text-sm text-justify">{description}</p>
+      <h2 className={`text-lg font-semibold mb-2 ${textClass}`}>Description</h2>
+      <p className={`mb-4 text-sm text-justify ${subTextClass}`}>{description}</p>
     </div>
   );
 };

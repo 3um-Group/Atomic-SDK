@@ -12,6 +12,7 @@ export interface ContactFormProps {
   message: string;
   error?: string;
   className?: string; // Add className prop to customize styles
+  theme?: 'light' | 'dark'; // Add theme prop
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({
@@ -24,15 +25,18 @@ const ContactForm: React.FC<ContactFormProps> = ({
   message,
   error,
   className,
+  theme = 'light', // Default to light theme
 }) => {
   return (
-    <div className={`p-5 border border-gray-300 rounded-lg shadow-md ${className}`}>
+    <div className={`p-5 rounded-lg shadow-md border ${className}`}>
       <FormFieldWithLabel
         label="Phone"
         id="phone"
         type="tel"
         value={phone}
         onChange={onPhoneChange}
+        theme={theme} // Pass theme prop
+        className={`rounded-lg ${className}`}
       />
       <FormFieldWithLabel
         label="Email"
@@ -40,6 +44,8 @@ const ContactForm: React.FC<ContactFormProps> = ({
         type="email"
         value={email}
         onChange={onEmailChange}
+        theme={theme} // Pass theme prop  
+        className={`rounded-lg ${className}`}
       />
       <FormFieldWithLabel
         label="Message"
@@ -47,9 +53,16 @@ const ContactForm: React.FC<ContactFormProps> = ({
         multiline
         value={message}
         onChange={onMessageChange}
+        theme={theme} 
+        className={`rounded-lg ${className}`}
       />
      
-      <Button className="w-full bg-blue-950 text-white py-2 px-4 rounded mt-1" onClick={onSubmit} size="sm">
+     <Button
+        className={`w-full text-white py-2 px-4 rounded mt-1 ${theme === 'light' ? 'bg-blue-950' : 'bg-gray-200 text-black'}`}
+        onClick={onSubmit}
+        size="sm"
+        theme={theme} // Use theme prop
+      >
         Request Info
       </Button>
     </div>
