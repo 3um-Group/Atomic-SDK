@@ -11,7 +11,7 @@ const Template: StoryFn<PropertyDetailsPageProps> = (args) => <PropertyDetailsPa
 
 export const Default = Template.bind({});
 Default.args = {
-  imageUrl: 'https://www.trulia.com/pictures/thumbs_4/zillowstatic/fp/022942f9126bfb9be244c725d388a2a2-full.jpg',
+  imageUrl: 'https://via.placeholder.com/300x200.png?text=Sample+Image',
   address: '1668 Barfield Run NW',
   price: '$506,990',
   originalPrice: '',
@@ -25,7 +25,7 @@ Default.args = {
   initialPhone: '',
   initialEmail: '',
   initialMessage: '',
-  theme: 'light', // Add theme prop
+  theme: 'light',
 };
 
 export const WithCustomData = Template.bind({});
@@ -44,17 +44,17 @@ WithCustomData.args = {
   initialPhone: '123-456-7890',
   initialEmail: 'example@example.com',
   initialMessage: 'I am interested in this property.',
-  theme: 'light', // Add theme prop
+  theme: 'light',
 };
 
 export const DarkTheme = Template.bind({});
 DarkTheme.args = {
   ...Default.args,
-  theme: 'dark', // Dark theme
+  theme: 'dark',
 };
 
 export const DarkThemeWithCustomData = Template.bind({});
 DarkThemeWithCustomData.args = {
   ...WithCustomData.args,
-  theme: 'dark', // Dark theme
+  theme: 'dark',
 };
