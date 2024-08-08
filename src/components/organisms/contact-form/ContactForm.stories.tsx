@@ -18,5 +18,19 @@ Default.args = {
   onEmailChange: () => {},
   onMessageChange: () => {},
   onSubmit: () => {},
-  className: 'max-w-md mx-auto', // Default styling for the form
+  className: 'max-w-md mx-auto',
+  theme: 'light', // Default to light theme
+};
+
+export const DarkTheme = Template.bind({});
+DarkTheme.args = {
+  phone: '',
+  email: '',
+  message: '',
+  onPhoneChange: () => {},
+  onEmailChange: () => {},
+  onMessageChange: () => {},
+  onSubmit: () => {},
+  className: 'max-w-md mx-auto',
+  theme: 'dark', // Set to dark theme
 };

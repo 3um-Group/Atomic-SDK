@@ -13,4 +13,12 @@ export const Default = Template.bind({});
 Default.args = {
   htmlFor: 'input-id',
   children: 'Label Text',
+  theme: 'light', // Add theme prop
+};
+
+export const DarkTheme = Template.bind({});
+DarkTheme.args = {
+  htmlFor: 'input-id',
+  children: 'Label Text',
+  theme: 'dark', // Add theme prop for dark mode
 };
