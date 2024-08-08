@@ -1,27 +1,31 @@
 import React from 'react';
-import { useAuth0, LogoutOptions } from '@auth0/auth0-react';
 import Button, { ButtonProps } from '../../atoms/button/Button';
 
 export interface AuthButtonProps extends Omit<ButtonProps, 'onClick' | 'children'> {
+    onAuth: () => void;
+    returnTo?: string;
 
 }
 
-export const LoginButton: React.FC<AuthButtonProps> = ({ color, theme, ...props }) => {
-    const { loginWithRedirect } = useAuth0();
+export const LoginButton: React.FC<AuthButtonProps> = ({  theme, onAuth, ...props }) => {
     return (
-        <Button theme={theme} {...props} onClick={() => loginWithRedirect()}>
+        <Button theme={theme} {...props} onClick={onAuth}>
             Log In
         </Button>
     );
 };
 
-export const LogoutButton: React.FC<AuthButtonProps> = ({ color, theme, ...props }) => {
-    const { logout } = useAuth0();
-    type LogoutOptionsWithReturnTo = LogoutOptions & { returnTo?: string };
+export const LogoutButton: React.FC<AuthButtonProps> = ({ theme, onAuth, returnTo, ...props }) => {
+    const handleLogout = () => {
+      onAuth();
+      if (returnTo) {
+        window.location.href = returnTo;
+      }
+    };
+  
     return (
-        <Button theme={theme} {...props} onClick={() => logout({ returnTo: window.location.origin } as LogoutOptionsWithReturnTo)}>
-            Log out
-        </Button>
-    )
-
-}
+      <Button theme={theme} {...props} onClick={handleLogout}>
+        Log out
+      </Button>
+    );
+  };

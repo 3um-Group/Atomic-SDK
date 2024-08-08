@@ -1,8 +1,11 @@
 import path from 'path';
 import type { StorybookConfig } from "@storybook/react-webpack5";
 import { RuleSetRule } from 'webpack';
+
+
 const config: StorybookConfig = {
-  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+  staticDirs: ['../public'],
+  stories: ["../src/.mdx", "../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
     "@storybook/addon-webpack5-compiler-swc",
     "@storybook/addon-onboarding",
@@ -51,6 +54,23 @@ const config: StorybookConfig = {
     }
     return config;
   },
+  managerHead: () => `
+     <style>
+
+      .css-1wmdc3 {
+          display: flex;
+          align-items: center;
+      }
+           .css-1rb1jn6 {
+          display: flex !important;
+          align-items: center;
+          height: 40px; 
+      }
+
+   
+     
+        </style>
+  `
 };
 
 export default config;
