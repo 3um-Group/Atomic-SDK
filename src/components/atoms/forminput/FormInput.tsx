@@ -13,6 +13,7 @@ export interface FormInputProps {
   multiline?: boolean; // Prop to determine if the input should be a textarea
   onFocus?: () => void; // Add onFocus prop
   onBlur?: () => void; // Add onBlur prop
+  theme?: 'light' | 'dark'; // Add theme prop
 }
 
 const FormInput: React.FC<FormInputProps> = ({
@@ -25,10 +26,13 @@ const FormInput: React.FC<FormInputProps> = ({
   name,
   id,
   multiline = false, // Default to false
-  onFocus, // Add onFocus prop
-  onBlur, // Add onBlur prop
+  onFocus, 
+  onBlur, 
+  theme = 'light', // Default theme to light
 }) => {
-  const baseClass = 'w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-gray-500 placeholder-gray-500';
+  const baseClass = `w-full p-2 border rounded text-sm focus:outline-none focus:ring-2 placeholder-gray-500 ${
+    theme === 'dark' ? 'bg-black text-white border-white focus:ring-white' : 'bg-white text-black border-gray-300 focus:ring-gray-500'
+  }`;
   const combinedClassName = `${baseClass} ${className}`;
 
   return multiline ? (
@@ -40,8 +44,9 @@ const FormInput: React.FC<FormInputProps> = ({
       disabled={disabled}
       name={name}
       id={id}
-      onFocus={onFocus} // Add onFocus
-      onBlur={onBlur} // Add onBlur
+      onFocus={onFocus}
+      onBlur={onBlur}
+      data-theme={theme}
     />
   ) : (
     <UI.Input
@@ -53,8 +58,9 @@ const FormInput: React.FC<FormInputProps> = ({
       disabled={disabled}
       name={name}
       id={id}
-      onFocus={onFocus} // Add onFocus
-      onBlur={onBlur} // Add onBlur
+      onFocus={onFocus}
+      onBlur={onBlur}
+      data-theme={theme}
     />
   );
 };

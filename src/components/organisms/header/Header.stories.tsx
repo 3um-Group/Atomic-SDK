@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import Header, { UseAuthResult } from './Header';
+import { action } from '@storybook/addon-actions';
 
 const meta: Meta<typeof Header> = {
   title: '@3UM-SDK/Header',
@@ -36,8 +37,8 @@ const defaultLogoProps = {
 const createMockUseAuth = (isAuthenticated: boolean): () => UseAuthResult => {
   return () => ({
     isAuthenticated,
-    loginWithRedirect: () => console.log('Login clicked'),
-    logout: () => console.log('Logout clicked'),
+    loginWithRedirect: action('Login clicked'),
+    logout: action('Logout clicked'),
   });
 };
 

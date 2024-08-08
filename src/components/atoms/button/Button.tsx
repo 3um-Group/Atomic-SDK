@@ -37,7 +37,9 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <>
-      <UI.Button color={variant} size={size} dataTheme={theme} {...props}>{children}</UI.Button>
+      <UI.Button color={variant} size={size} dataTheme={theme}   onClick={(e) => {
+        if (onClick) onClick();
+      }} {...props}>{children}</UI.Button>
     </>
   )
 };

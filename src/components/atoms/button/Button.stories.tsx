@@ -46,7 +46,7 @@ export const WithAction = Template.bind({});
 WithAction.args = {
   children: 'Action button',
   theme: 'dark',
-  onClick: () => alert('Button clicked!'),
+  onClick: () => console.log('Button clicked!'),
 };
 
 
