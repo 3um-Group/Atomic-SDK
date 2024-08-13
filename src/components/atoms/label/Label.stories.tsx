@@ -12,13 +12,6 @@ const Template: StoryFn<LabelProps> = (args) => <Label {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   htmlFor: 'input-id',
-  children: 'Label Text',
-  theme: 'light', // Add theme prop
+  children: 'Label Text'
 };
 
-export const DarkTheme = Template.bind({});
-DarkTheme.args = {
-  htmlFor: 'input-id',
-  children: 'Label Text',
-  theme: 'dark', // Add theme prop for dark mode
-};
