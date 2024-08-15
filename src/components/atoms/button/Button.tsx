@@ -14,7 +14,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   /** The color of the button (if applicable) */
   className?: string;
   /** The content of the button */
-  children?: string;
+  children?: React.ReactNode;
   /** Function to call when the button is clicked */
   onClick?: () => void
 
