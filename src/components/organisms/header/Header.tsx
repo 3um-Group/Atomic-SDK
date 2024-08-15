@@ -30,7 +30,6 @@ interface HeaderProps {
   showNavItems?: boolean;
   showAuthElements?: boolean;
   logoProps: Omit<LogoProps, 'className'>;
-  theme?: string;
   useAuth?: () => UseAuthResult; 
 }
 
@@ -38,13 +37,12 @@ const Header: React.FC<HeaderProps> = ({
   showNavItems = true,
   showAuthElements = true,
   logoProps,
-  theme,
   useAuth: useAuthProp = useAuth // Use the prop if provided, otherwise use the default
 }) => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuthProp();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
-    <UI.Navbar className={`bg-white shadow-md ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
+    <UI.Navbar className="shadow-md" >
       <UI.Navbar.Start className='flex items-center space-x-5'>
         <Logo {...logoProps} />
         {/* <div > */}
@@ -64,7 +62,7 @@ const Header: React.FC<HeaderProps> = ({
       <UI.Navbar.End >
         {showAuthElements && (
           <div>
-            {isAuthenticated ? <LogoutButton theme={theme} onAuth={logout}  /> : <LoginButton theme={theme} onAuth={loginWithRedirect} />}
+            {isAuthenticated ? <LogoutButton  onAuth={logout}  /> : <LoginButton  onAuth={loginWithRedirect} />}
           </div>
         )}
         <button
@@ -87,7 +85,7 @@ const Header: React.FC<HeaderProps> = ({
           <div className="mt-4">
             {showAuthElements && (
               <>
-                {isAuthenticated ? <LogoutButton theme={theme} onAuth={logout} /> : <LoginButton theme={theme} onAuth={loginWithRedirect} />}
+                {isAuthenticated ? <LogoutButton  onAuth={logout} /> : <LoginButton  onAuth={loginWithRedirect} />}
               </>
             )}
           </div>

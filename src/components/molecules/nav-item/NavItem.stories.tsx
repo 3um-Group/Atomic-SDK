@@ -10,11 +10,7 @@ const meta: Meta<typeof NavItem> = {
     href: { control: 'text' },
     children: { control: 'text' },
     isActive: { control: 'boolean' },
-    activeVariant: { 
-      control: 'select', 
-      options: ['neutral', 'primary', 'secondary', 'accent', 'success', 'info', 'warning', 'error'] 
-    },
-    inactiveVariant: { 
+    variantType: { 
       control: 'select', 
       options: ['neutral', 'primary', 'secondary', 'accent', 'success', 'info', 'warning', 'error'] 
     },
@@ -45,8 +41,7 @@ export const CustomVariants: Story = {
   args: {
     href: '/contact',
     children: 'Contact',
-    activeVariant: 'accent',
-    inactiveVariant: 'secondary',
+    variantType: 'accent',
   },
 };
 
