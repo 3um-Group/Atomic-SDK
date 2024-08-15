@@ -7,15 +7,15 @@ export interface AuthButtonProps extends Omit<ButtonProps, 'onClick' | 'children
 
 }
 
-export const LoginButton: React.FC<AuthButtonProps> = ({  theme, onAuth, ...props }) => {
+export const LoginButton: React.FC<AuthButtonProps> = ({ onAuth, ...props }) => {
     return (
-        <Button theme={theme} {...props} onClick={onAuth}>
+        <Button  {...props} onClick={onAuth}>
             Log In
         </Button>
     );
 };
 
-export const LogoutButton: React.FC<AuthButtonProps> = ({ theme, onAuth, returnTo, ...props }) => {
+export const LogoutButton: React.FC<AuthButtonProps> = ({ onAuth, returnTo, ...props }) => {
     const handleLogout = () => {
       onAuth();
       if (returnTo) {
@@ -24,7 +24,7 @@ export const LogoutButton: React.FC<AuthButtonProps> = ({ theme, onAuth, returnT
     };
   
     return (
-      <Button theme={theme} {...props} onClick={handleLogout}>
+      <Button {...props} onClick={handleLogout}>
         Log out
       </Button>
     );

@@ -15,10 +15,6 @@ const meta: Meta<typeof Button> = {
       control: 'select',
       options: ['sm', 'md', 'lg'],
     },
-    theme: {
-      control: 'select',
-      options: ['light', 'dark'],
-    },
     children: {
       control: 'text',
     },
@@ -38,14 +34,12 @@ const Template: StoryFn<ButtonProps> = (args) => <Button {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   children: 'Default Button',
-  theme: 'dark'
 };
 
 
 export const WithAction = Template.bind({});
 WithAction.args = {
   children: 'Action button',
-  theme: 'dark',
   onClick: () => console.log('Button clicked!'),
 };
 

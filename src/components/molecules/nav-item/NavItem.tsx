@@ -3,14 +3,14 @@ import Link, { LinkProps } from '../../atoms/link/Link'; // Adjust the import pa
 
 export interface NavItemProps extends Omit<LinkProps, 'variant'> {
   isActive?: boolean;
-  activeVariant?: LinkProps['variant'];
-  inactiveVariant?: LinkProps['variant'];
+  variantType?: LinkProps['variant'];
 }
 
 const NavItem: React.FC<NavItemProps> = ({
   isActive = false,
-  activeVariant = 'primary',
-  inactiveVariant = 'neutral',
+  // activeVariant = 'primary',
+  // inactiveVariant = 'neutral',
+  variantType,
   hover = true,
   className = '',
   children,
@@ -18,11 +18,10 @@ const NavItem: React.FC<NavItemProps> = ({
 }) => {
   const baseClasses = 'nav-item';
   const activeClasses = isActive ? 'active' : '';
-  const variant = isActive ? activeVariant : inactiveVariant;
-  
+
   return (
-    <Link 
-      variant={variant}
+    <Link
+      variant={variantType}
       hover={hover}
       className={`${baseClasses} ${activeClasses} ${className}`.trim()}
       {...props}

@@ -13,8 +13,6 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   size?: 'sm' | 'md' | 'lg';
   /** The color of the button (if applicable) */
   className?: string;
-  /** The theme of the button */
-  theme?: string;
   /** The content of the button */
   children?: string;
   /** Function to call when the button is clicked */
@@ -29,7 +27,6 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 const Button: React.FC<ButtonProps> = ({
   variant = 'ghost',
   size = 'md',
-  theme,
   color,
   children,
   onClick,
@@ -37,7 +34,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <>
-      <UI.Button color={variant} size={size} dataTheme={theme}   onClick={(e) => {
+      <UI.Button color={variant} size={size}  onClick={(e) => {
         if (onClick) onClick();
       }} {...props}>{children}</UI.Button>
     </>
