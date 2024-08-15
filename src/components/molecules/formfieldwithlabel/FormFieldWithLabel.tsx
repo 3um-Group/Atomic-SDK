@@ -48,6 +48,7 @@ const FormFieldWithLabel: React.FC<FormFieldWithLabelProps> = ({
         {...inputProps}
         className={`pt-6 ${className}`} 
       />
+      
       <Label
         htmlFor={id}
         className={`absolute left-2 top-1 transition-all duration-200 transform px-1 ${
