@@ -50,7 +50,6 @@ const FormFieldWithLabel: React.FC<FormFieldWithLabelProps> = ({
       />
       <Label
         htmlFor={id}
-        theme = {theme}
         className={`absolute left-2 top-1 transition-all duration-200 transform px-1 ${
           isFocused || value ? 'scale-90 -translate-y-1 text-xs' : ''
         }`} 
