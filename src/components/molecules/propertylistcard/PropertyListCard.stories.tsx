@@ -57,5 +57,25 @@ WithDifferentData.args = {
 };
 
 
+export const CenterAlignedReducedWidthCard = Template.bind({});
+CenterAlignedReducedWidthCard.args = {
+  imageSrc: 'https://media-cdn.trulia-local.com/neighborhood-media-service-prod/ma/boston/hyde-park/1269-ma_bos_hyde_park_154775_23_500x_cfit.jpg',
+  imageAlt: 'Center Aligned Property',
+  price: '$160,000',
+  description: '2121 Rustic Oak Ln',
+  location: 'Springfield, IL,45875',
+  badges: [
+    { label: 'Financing Available' },
+  ],
+  beds: 3,
+  baths: 2,
+  sqft: 1200,
+  onRegister: () => alert('Registered for Center Aligned Property!'),
+  badgeColors: {
+    'Financing Available': 'bg-transparent text-blue-500 border border-blue-500',
+  },
+  className: 'w-9/12 mx-auto', 
+};
+
 
 
