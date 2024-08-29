@@ -74,7 +74,7 @@ CenterAlignedReducedWidthCard.args = {
   badgeColors: {
     'Financing Available': 'bg-transparent text-blue-500 border border-blue-500',
   },
-  className: 'w-9/12 mx-auto', 
+  className: 'w-3/4 mx-auto', 
 };
 
 
