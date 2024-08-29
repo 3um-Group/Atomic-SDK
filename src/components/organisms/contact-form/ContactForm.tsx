@@ -61,8 +61,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
         className={`w-full text-white py-2 px-4 rounded mt-1 ${theme === 'light' ? 'bg-blue-950' : 'bg-gray-200 text-black'}`}
         onClick={onSubmit}
         size="sm"
-        theme={theme} // Use theme prop
-      >
+        >
         Request Info
       </Button>
     </div>
