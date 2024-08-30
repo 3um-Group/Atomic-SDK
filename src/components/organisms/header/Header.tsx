@@ -30,7 +30,7 @@ interface HeaderProps {
   showNavItems?: boolean;
   showAuthElements?: boolean;
   logoProps: Omit<LogoProps, 'className'>;
-  useAuth?: () => UseAuthResult; 
+  useAuth?: () => UseAuthResult;
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -41,57 +41,65 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuthProp();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
-    <UI.Navbar className="shadow-md" >
-      <UI.Navbar.Start className='flex items-center space-x-5'>
+    <UI.Navbar className="shadow-md relative">
+      <UI.Navbar.Start className="flex items-center space-x-5">
         <Logo {...logoProps} />
-        {/* <div > */}
         {showNavItems && (
-          <nav className='hidden md:flex space-x-6'>
-            <NavItem href="/" >Buy</NavItem>
+          <nav className="hidden md:flex space-x-6">
+            <NavItem href="/">Buy</NavItem>
             <NavItem href="/about">Stake</NavItem>
             <NavItem href="/contact">Farm</NavItem>
           </nav>
         )}
-        {/* </div> */}
       </UI.Navbar.Start>
 
 
 
 
-      <UI.Navbar.End >
+      <UI.Navbar.End className="flex items-center space-x-4">
         {showAuthElements && (
-          <div>
-            {isAuthenticated ? <LogoutButton  onAuth={logout}  /> : <LoginButton  onAuth={loginWithRedirect} />}
+          <div className="hidden md:block">
+            {isAuthenticated ? (
+              <LogoutButton onAuth={logout} />
+            ) : (
+              <LoginButton onAuth={loginWithRedirect} />
+            )}
           </div>
         )}
         <button
-          className="md:hidden"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="md:hidden focus:outline-none"
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
-      </UI.Navbar.End>
 
-      {isMenuOpen && (
-        <div className="md:hidden mt-4">
-          <nav className="flex flex-col space-y-2">
-            <NavItem href="/" >Home</NavItem>
-            <NavItem href="/about">About</NavItem>
-            <NavItem href="/contact">Contact</NavItem>
-          </nav>
-          <div className="mt-4">
+        {isMenuOpen && (
+          <div className="absolute top-full right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+            <nav className="flex flex-col space-y-2 p-2">
+              <NavItem href="/" onClick={closeMenu}>Home</NavItem>
+              <NavItem href="/about" onClick={closeMenu}>About</NavItem>
+              <NavItem href="/contact" onClick={closeMenu}>Contact</NavItem>
+            </nav>
             {showAuthElements && (
-              <>
-                {isAuthenticated ? <LogoutButton  onAuth={logout} /> : <LoginButton  onAuth={loginWithRedirect} />}
-              </>
+              <div className="mt-2 border-t border-gray-200 pt-2">
+                {isAuthenticated ? (
+                  <LogoutButton onAuth={logout} />
+                ) : (
+                  <LoginButton onAuth={loginWithRedirect} />
+                )}
+              </div>
             )}
           </div>
-        </div>
-      )}
-
+        )}
+      </UI.Navbar.End>
 
 
 
