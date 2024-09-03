@@ -33,9 +33,6 @@ const Template: StoryFn<SidebarProps> = (args) => {
   
     return (
       <>
-        <Button onClick={handleOpen} >
-          Open Sidebar
-        </Button>
         <Sidebar {...args} isOpen={isOpen} onClose={handleClose} />
       </>
     );
@@ -43,48 +40,20 @@ const Template: StoryFn<SidebarProps> = (args) => {
 
 export const Default = Template.bind({})
 Default.args = {
-    children: 'Sidebar content goes here'
+  children: (
+    <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+      <li><a>Sidebar Item 1</a></li><li><a>Sidebar Item 2</a></li>
+    </ul>
+  )
 }
 
-// export const SaveCancel = Template.bind({});
-// SaveCancel.args = {
-//   children: 'Do you want to save the changes?',
-//   actions: (
-//     <>
-//       <Button  onClick={() => alert('Save clicked')}>
-//         Save
-//       </Button>
-//       <Button  className= "btn btn-outline btn-error" onClick={() => alert('Cancel clicked')}>
-//         Cancel
-//       </Button>
-//     </>
-//   ),
-// };
+export const OpenDrawer = Template.bind({});
+OpenDrawer.args = {
+  isOpen: true,
+};
 
-// export const YesNo = Template.bind({});
-// YesNo.args = {
-//     children: 'Are you sure you want to proceed?',
-//   actions: (
-//     <>
-//       <Button  onClick={() => alert('Yes clicked')}>
-//         Yes
-//       </Button>
-//       <Button  className= "btn btn-outline btn-error" onClick={() => alert('No clicked')}>
-//         No
-//       </Button>
-//     </>
-//   ),
-// };
-
-
-// export const Ok = Template.bind({});
-// Ok.args = {
-//   children: 'Operation completed successfully.',
-//   actions: (
-//     <Button className="btn btn-outline btn-info" onClick={() => alert('Ok clicked')}>
-//         Ok
-//       </Button>
-//   ),
-// };
-
+export const ClosedDrawer = Template.bind({});
+ClosedDrawer.args = {
+  isOpen: false,
+};
 
