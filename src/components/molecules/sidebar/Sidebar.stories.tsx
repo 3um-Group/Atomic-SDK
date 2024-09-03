@@ -10,15 +10,15 @@ const meta: Meta<typeof Sidebar> = {
     argTypes: {
         children: {
             control: 'text',
-            description: 'Content displayed inside the modal',
+            description: 'Content displayed inside the sidebar',
         },
         isOpen: {
             control: 'boolean',
-            description: 'Controls whether the modal is open or closed',
+            description: 'Controls whether the sidebar is open or closed',
         },
         onClose: {
             action: 'closed',
-            description: 'Function called when the modal requests to be closed',
+            description: 'Function called when the sidebar requests to be closed',
         },
     }
 }
@@ -34,7 +34,7 @@ const Template: StoryFn<SidebarProps> = (args) => {
     return (
       <>
         <Button onClick={handleOpen} >
-          Open Modal
+          Open Sidebar
         </Button>
         <Sidebar {...args} isOpen={isOpen} onClose={handleClose} />
       </>
@@ -43,48 +43,48 @@ const Template: StoryFn<SidebarProps> = (args) => {
 
 export const Default = Template.bind({})
 Default.args = {
-    children: 'Dialog content goes here'
+    children: 'Sidebar content goes here'
 }
 
-export const SaveCancel = Template.bind({});
-SaveCancel.args = {
-  children: 'Do you want to save the changes?',
-  actions: (
-    <>
-      <Button  onClick={() => alert('Save clicked')}>
-        Save
-      </Button>
-      <Button  className= "btn btn-outline btn-error" onClick={() => alert('Cancel clicked')}>
-        Cancel
-      </Button>
-    </>
-  ),
-};
+// export const SaveCancel = Template.bind({});
+// SaveCancel.args = {
+//   children: 'Do you want to save the changes?',
+//   actions: (
+//     <>
+//       <Button  onClick={() => alert('Save clicked')}>
+//         Save
+//       </Button>
+//       <Button  className= "btn btn-outline btn-error" onClick={() => alert('Cancel clicked')}>
+//         Cancel
+//       </Button>
+//     </>
+//   ),
+// };
 
-export const YesNo = Template.bind({});
-YesNo.args = {
-    children: 'Are you sure you want to proceed?',
-  actions: (
-    <>
-      <Button  onClick={() => alert('Yes clicked')}>
-        Yes
-      </Button>
-      <Button  className= "btn btn-outline btn-error" onClick={() => alert('No clicked')}>
-        No
-      </Button>
-    </>
-  ),
-};
+// export const YesNo = Template.bind({});
+// YesNo.args = {
+//     children: 'Are you sure you want to proceed?',
+//   actions: (
+//     <>
+//       <Button  onClick={() => alert('Yes clicked')}>
+//         Yes
+//       </Button>
+//       <Button  className= "btn btn-outline btn-error" onClick={() => alert('No clicked')}>
+//         No
+//       </Button>
+//     </>
+//   ),
+// };
 
 
-export const Ok = Template.bind({});
-Ok.args = {
-  children: 'Operation completed successfully.',
-  actions: (
-    <Button className="btn btn-outline btn-info" onClick={() => alert('Ok clicked')}>
-        Ok
-      </Button>
-  ),
-};
+// export const Ok = Template.bind({});
+// Ok.args = {
+//   children: 'Operation completed successfully.',
+//   actions: (
+//     <Button className="btn btn-outline btn-info" onClick={() => alert('Ok clicked')}>
+//         Ok
+//       </Button>
+//   ),
+// };
 
 
