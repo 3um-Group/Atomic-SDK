@@ -19,9 +19,9 @@ export default meta;
 const Template: StoryFn<SidebarProps> = (args) => {
   
     return (
-      <>
+      <React.Fragment>
         <Sidebar {...args} />
-      </>
+      </React.Fragment>
     );
   };
 
