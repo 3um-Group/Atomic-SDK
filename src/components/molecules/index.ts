@@ -4,5 +4,6 @@ export * from './formfieldwithlabel';
 export * from './property-card';
 export * from "./emblacarousel";
 export * from "./searchbar";
+export * from "./sidebar";
 export * from "./propertylistcard";
 
