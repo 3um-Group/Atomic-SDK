@@ -1,5 +1,5 @@
 {
-  "name": "@3um-Group/atomic-sdk",
+  "name": "@3um-group/atomic-sdk",
   "version": "1.0.7",
   "main": "dist/index.js",
   "scripts": {
