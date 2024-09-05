@@ -1,6 +1,6 @@
 {
-  "name": "@3um-Group/atomic-sdk",
-  "version": "1.0.7",
+  "name": "@3um-group/atomic-sdk",
+  "version": "1.0.8",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
