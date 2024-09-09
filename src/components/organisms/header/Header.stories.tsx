@@ -16,10 +16,10 @@ const meta: Meta<typeof Header> = {
       width: { control: 'number' },
       height: { control: 'number' },
     },
-    theme: {
-      control: 'select',
-      options: ['light', 'dark'],
-    },
+    // theme: {
+    //   control: 'select',
+    //   options: ['light', 'dark'],
+    // },
   },
 };
 
@@ -47,17 +47,17 @@ export const LogoOnly: Story = {
     logoProps: defaultLogoProps,
     showNavItems: false,
     showAuthElements: false,
-    theme: 'light',
+    // theme: 'light',
     useAuth: createMockUseAuth(false),
   },
 };
 
 export const LogoOnlyDarkTheme: Story = {
   args: {
-    logoProps: { ...defaultLogoProps, theme: 'dark' },
+    logoProps: { ...defaultLogoProps },
     showNavItems: false,
     showAuthElements: false,
-    theme: 'dark',
+    // theme: 'dark',
     useAuth: createMockUseAuth(false),
   },
 };
@@ -67,7 +67,7 @@ export const LogoAndNavItems: Story = {
     logoProps: defaultLogoProps,
     showNavItems: true,
     showAuthElements: false,
-    theme: 'light',
+    // theme: 'light',
     useAuth: createMockUseAuth(false),
   },
 };
@@ -77,7 +77,7 @@ export const FullHeaderLoggedOut: Story = {
     logoProps: defaultLogoProps,
     showNavItems: true,
     showAuthElements: true,
-    theme: 'light',
+    // theme: 'light',
     useAuth: createMockUseAuth(false),
   },
 };
@@ -87,7 +87,7 @@ export const FullHeaderLoggedIn: Story = {
     logoProps: defaultLogoProps,
     showNavItems: true,
     showAuthElements: true,
-    theme: 'light',
+    // theme: 'light',
     useAuth: createMockUseAuth(true),
   },
 };
