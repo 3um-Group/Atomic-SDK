@@ -7,10 +7,10 @@ const meta: Meta<typeof Sidebar> = {
     component: Sidebar,
     tags: ['autodocs'],
     argTypes: {
-        children: {
-            control: 'text',
-            description: 'Content displayed inside the sidebar',
-        }
+      children: {
+        control: 'text',
+        description: 'Content displayed inside the sidebar',
+      }
     }
 }
 
