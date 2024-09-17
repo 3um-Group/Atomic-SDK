@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
+import { Button } from '../../atoms';
 
 export interface SidebarProps {
     children: React.ReactNode;
@@ -14,7 +15,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children, actions }) => {
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content">
                 <label htmlFor="my-drawer" className="drawer-button">
-                    <FontAwesomeIcon icon={faGear} />
+                    <Button><FontAwesomeIcon icon={faGear} /></Button>
                 </label>
             </div>
             <div className="drawer-side">
