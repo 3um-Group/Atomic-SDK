@@ -6,4 +6,5 @@ export * from "./emblacarousel";
 export * from "./searchbar";
 export * from "./sidebar";
 export * from "./propertylistcard";
+export * from "./newscard";
 
