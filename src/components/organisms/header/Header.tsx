@@ -29,21 +29,21 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({
   showAuthElements = true,
   logoProps,
-  useAuth: useAuthProp = useAuth
+  useAuth: useAuthProp = useAuth,
 }) => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuthProp();
 
-
   return (
     <UI.Navbar className="shadow-md bg-base-100 relative">
-      <UI.Navbar.Start className="flex items-center space-x-2 pl-2">
+      <UI.Navbar.Start className="flex items-center space-x-4 pl-2">
         <Sidebar children={undefined} />
-        <Logo {...logoProps} className="ml-2" />
+        <div className="ml-2 mr-4">
+          <Logo {...logoProps} />
+        </div>
       </UI.Navbar.Start>
-
-      <UI.Navbar.Center className="flex items-center space-x-5">
+      <UI.Navbar.Center className="flex items-center space-x-4">
         <SearchBar
-          value={''}
+          value=""
           onChange={() => { /* TODO: Implement onChange handler */ }}
           onSearch={() => { /* TODO: Implement onSearch handler */ }}
         />
@@ -62,3 +62,4 @@ const Header: React.FC<HeaderProps> = ({
 };
 
 export default Header;
+
