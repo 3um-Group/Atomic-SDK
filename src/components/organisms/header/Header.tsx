@@ -26,6 +26,7 @@ interface HeaderProps {
   useAuth?: () => UseAuthResult;
 }
 
+
 const Header: React.FC<HeaderProps> = ({
   showAuthElements = true,
   logoProps,
