@@ -45,7 +45,6 @@ const createMockUseAuth = (isAuthenticated: boolean): () => UseAuthResult => {
 export const LogoOnly: Story = {
   args: {
     logoProps: defaultLogoProps,
-    showNavItems: false,
     showAuthElements: false,
     // theme: 'light',
     useAuth: createMockUseAuth(false),
@@ -55,7 +54,6 @@ export const LogoOnly: Story = {
 export const LogoOnlyDarkTheme: Story = {
   args: {
     logoProps: { ...defaultLogoProps },
-    showNavItems: false,
     showAuthElements: false,
     // theme: 'dark',
     useAuth: createMockUseAuth(false),
@@ -65,7 +63,6 @@ export const LogoOnlyDarkTheme: Story = {
 export const LogoAndNavItems: Story = {
   args: {
     logoProps: defaultLogoProps,
-    showNavItems: true,
     showAuthElements: false,
     // theme: 'light',
     useAuth: createMockUseAuth(false),
@@ -75,7 +72,6 @@ export const LogoAndNavItems: Story = {
 export const FullHeaderLoggedOut: Story = {
   args: {
     logoProps: defaultLogoProps,
-    showNavItems: true,
     showAuthElements: true,
     // theme: 'light',
     useAuth: createMockUseAuth(false),
@@ -85,7 +81,6 @@ export const FullHeaderLoggedOut: Story = {
 export const FullHeaderLoggedIn: Story = {
   args: {
     logoProps: defaultLogoProps,
-    showNavItems: true,
     showAuthElements: true,
     // theme: 'light',
     useAuth: createMockUseAuth(true),
