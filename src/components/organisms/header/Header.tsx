@@ -24,19 +24,24 @@ interface HeaderProps {
   showAuthElements?: boolean;
   logoProps: Omit<LogoProps, 'className'>;
   useAuth?: () => UseAuthResult;
+  sidebarProps?: React.ComponentProps<typeof Sidebar>;
 }
 
 const Header: React.FC<HeaderProps> = ({
   showAuthElements = true,
   logoProps,
   useAuth: useAuthProp = useAuth,
+  sidebarProps,
 }) => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuthProp();
+  const { children: sidebarChildren, ...restSidebarProps } = sidebarProps || {};
 
   return (
     <UI.Navbar className="shadow-md bg-base-100 relative">
       <UI.Navbar.Start className="flex items-center space-x-4 pl-2">
-        <Sidebar children={undefined} />
+        <Sidebar {...restSidebarProps}>
+          {sidebarChildren}
+        </Sidebar>
         <div className="ml-2 mr-4">
           <Logo {...logoProps} />
         </div>
