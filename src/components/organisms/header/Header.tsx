@@ -24,7 +24,8 @@ interface HeaderProps {
   showAuthElements?: boolean;
   logoProps: Omit<LogoProps, 'className'>;
   useAuth?: () => UseAuthResult;
-  sidebarProps?: React.ComponentProps<typeof Sidebar>;
+  sidebarProps?: React.ComponentProps<typeof Sidebar> & { children?: React.ReactNode };
+
 }
 
 const Header: React.FC<HeaderProps> = ({
