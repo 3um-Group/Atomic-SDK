@@ -38,7 +38,7 @@ const Header: React.FC<HeaderProps> = ({
   const { children: sidebarChildren, ...restSidebarProps } = sidebarProps || {};
 
   return (
-    <UI.Navbar className="shadow-md bg-base-100 relative z-1">
+    <UI.Navbar className="shadow-md bg-base-100 relative">
       <UI.Navbar.Start className="flex items-center space-x-4 pl-2">
         <Sidebar {...restSidebarProps}>
           {sidebarChildren}
