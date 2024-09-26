@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import PropertyDetailsCard from "../../molecules/property-card/PropertyDetailsCard";
-import ContactForm from "../../organisms/contact-form/ContactForm";
 import Image from "../../atoms/image/Image";
 
 export interface PropertyDetailsPageProps {
@@ -15,9 +14,6 @@ export interface PropertyDetailsPageProps {
   description: string;
   propertyLink: string;
   location: string;
-  initialPhone: string;
-  initialEmail: string;
-  initialMessage: string;
   theme?: "light" | "dark"; // Add theme prop
 }
 
@@ -33,36 +29,8 @@ const PropertyDetailsPage: React.FC<PropertyDetailsPageProps> = ({
   description,
   propertyLink,
   location,
-  initialPhone,
-  initialEmail,
-  initialMessage,
   theme = "light", // Default theme to light
 }) => {
-  const [phone, setPhone] = useState(initialPhone);
-  const [email, setEmail] = useState(initialEmail);
-  const [message, setMessage] = useState(initialMessage);
-
-  const handlePhoneChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setPhone(e.target.value);
-  };
-
-  const handleEmailChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setEmail(e.target.value);
-  };
-
-  const handleMessageChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setMessage(e.target.value);
-  };
-
-  const handleSubmit = () => {};
-
-
   return (
     <div className={`container mx-auto p-4`}>
       <div className="max-w-4xl mx-auto rounded-lg overflow-hidden">
@@ -87,18 +55,6 @@ const PropertyDetailsPage: React.FC<PropertyDetailsPageProps> = ({
                 description={description}
                 propertyLink={propertyLink}
                 location={location}
-                theme={theme}
-              />
-            </div>
-            <div className="lg:w-1/4 lg:pl-4 lg:mt-0 mt-4">
-              <ContactForm
-                onSubmit={handleSubmit}
-                onPhoneChange={handlePhoneChange}
-                onEmailChange={handleEmailChange}
-                onMessageChange={handleMessageChange}
-                phone={phone}
-                email={email}
-                message={message}
                 theme={theme}
               />
             </div>

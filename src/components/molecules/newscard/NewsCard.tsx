@@ -15,7 +15,7 @@ export interface NewsCardProps {
 
 const NewsCard: React.FC<NewsCardProps> = ({ imageSrc, title, description, date, linkUrl, className }) => {
   return (
-    <div className={`card max-w-sm shadow-lg rounded-lg overflow-hidden bg-white ${className}`}>
+    <div className={`card shadow-lg rounded-lg overflow-hidden bg-white ${className}`}>
       <Image 
         src={imageSrc} 
         alt={title} 

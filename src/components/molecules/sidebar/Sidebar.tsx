@@ -10,17 +10,16 @@ export interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ children, actions }) => {
 
     return (
-        <div className="drawer">
+        <div className="drawer z-[1]">
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content">
                 <label htmlFor="my-drawer" className="btn drawer-button">
-                        <FontAwesomeIcon icon={faGear} />
+                    <FontAwesomeIcon icon={faGear} />
                 </label>
             </div>
             <div className="drawer-side">
                 <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                {}
-                <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+                <ul className="menu p-4 w-80 bg-base-100 text-base-content min-h-full">
                     {children}
                 </ul>
             </div>

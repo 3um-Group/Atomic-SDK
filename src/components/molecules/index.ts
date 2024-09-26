@@ -7,4 +7,5 @@ export * from "./searchbar";
 export * from "./sidebar";
 export * from "./propertylistcard";
 export * from "./newscard";
+export * from "./market-pricechart";
 
