@@ -9,7 +9,7 @@ export interface MarketPriceChartProps {
 
 const MarketPriceChart: React.FC<MarketPriceChartProps> = ({ data, className }) => {
   return (
-    <div className={`card shadow-lg rounded-lg bg-white text-black ${className}`}>
+    <div className={`card shadow-lg rounded-lg text-black ${className}`}>
       {/* Chart header */}
       <div className="p-4 md:p-6">
         <h3 className="text-lg md:text-xl font-bold mb-1">Price History</h3>
