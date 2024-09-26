@@ -15,13 +15,11 @@ const MarketPriceChart: React.FC<MarketPriceChartProps> = ({ data, className }) 
         <h3 className="text-lg md:text-xl font-bold mb-1">Price History</h3>
       </div>
 
-      {/* Chart container */}
       <div className="w-full h-48 sm:h-64 md:h-96 lg:h-128 p-2 md:p-4">
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart data={data}>
             <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" /> 
             
-            {/* X-Axis */}
             <XAxis
               dataKey="date"
               tickFormatter={(date) => dayjs(date).format('MMM DD, YYYY')} 
@@ -29,7 +27,6 @@ const MarketPriceChart: React.FC<MarketPriceChartProps> = ({ data, className }) 
               tick={{ fontSize: 12, className: 'text-xs md:text-sm' }} 
             />
 
-            {/* Left Y-Axis for Volume */}
             <YAxis
               yAxisId="left"
               orientation="left"
