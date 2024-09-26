@@ -24,5 +24,5 @@ Default.args = {
     { date: '2024-08-14', volume: 0.012, averagePrice: 0.011 },
     { date: '2024-09-10', volume: 0.017, averagePrice: 0.012 },
   ],
-  className: '',
+  className: 'bg-gray-100 p-4 rounded-lg h-96 w-full border border-gray-300 shadow-md',
 };
