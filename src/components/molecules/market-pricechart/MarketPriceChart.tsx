@@ -1,57 +1,93 @@
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import dayjs from 'dayjs';
 
 export interface MarketPriceChartProps {
-  data: { date: string; value: number }[]; 
+  data: { date: string; volume: number; averagePrice: number }[];
   className?: string;
 }
 
 const MarketPriceChart: React.FC<MarketPriceChartProps> = ({ data, className }) => {
   return (
-    <div className={`card shadow-lg rounded-lg bg-white ${className}`}>
-      <div className="p-4">
-        <h3 className="text-xl font-bold mb-1">Market History</h3>
+    <div className={`card shadow-lg rounded-lg bg-white text-black ${className}`}>
+      {/* Chart header */}
+      <div className="p-4 md:p-6">
+        <h3 className="text-lg md:text-xl font-bold mb-1">Price History</h3>
       </div>
 
-      <div className="h-64 w-full p-4">
+      {/* Chart container */}
+      <div className="w-full h-48 sm:h-64 md:h-96 lg:h-128 p-2 md:p-4">
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" />
+          <ComposedChart data={data}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" /> 
+            
+            {/* X-Axis */}
             <XAxis
               dataKey="date"
-              tickFormatter={(date) => dayjs(date).format('YYYY')} 
-              ticks={data
-                .filter((entry, index, self) => {
-                  return self.findIndex(d => dayjs(d.date).format('YYYY') === dayjs(entry.date).format('YYYY')) === index;
-                })
-                .map((entry) => entry.date)}
+              tickFormatter={(date) => dayjs(date).format('MMM DD, YYYY')} 
+              stroke="#000000"
+              tick={{ fontSize: 12, className: 'text-xs md:text-sm' }} 
             />
+
+            {/* Left Y-Axis for Volume */}
             <YAxis
+              yAxisId="left"
+              orientation="left"
+              tickFormatter={(value) => value.toFixed(4)}
+              stroke="#000000"
+              tick={{ fontSize: 12, className: 'text-xs md:text-sm' }} 
+              label={{ 
+                value: 'Volume (ETH)', 
+                angle: -90, 
+                position: 'insideLeft', 
+                offset: 15, 
+                dx: -10, 
+                fill: '#000000',
+                style: { textAnchor: 'middle' },
+                className: 'hidden md:block' 
+              }}
+            />
+
+            <YAxis
+              yAxisId="right"
               orientation="right"
-              tickFormatter={(value) => {
-                if (value === 0) return '';
-                return value >= 1000 ? `${(value / 1000).toFixed(value % 1000 === 0 ? 0 : 1)}K` : value;
+              tickFormatter={(value) => value.toFixed(4)}
+              stroke="#000000"
+              tick={{ fontSize: 12, className: 'text-xs md:text-sm' }} 
+              label={{ 
+                value: 'Average Price (ETH)', 
+                angle: -90, 
+                position: 'insideRight', 
+                offset: 15, 
+                dx: 10, 
+                fill: '#000000',
+                style: { textAnchor: 'middle' },
+                className: 'hidden md:block' 
               }}
             />
+
             <Tooltip
-              labelFormatter={(date) => dayjs(date).format('MMM YYYY')} 
-              formatter={(value) => {
-                const formattedValue = (value as number) >= 1000
-                  ? `${(value as number / 1000).toFixed((value as number) % 1000 === 0 ? 0 : 1)}K`
-                  : value.toString();
-                return [`$${formattedValue}`, 'Price'];
-              }}
+              labelFormatter={(date) => dayjs(date).format('MMM DD, YYYY')}
+              formatter={(value, name) => [`${value} ETH`, name === 'volume' ? 'Volume' : 'Average Price']}
+              contentStyle={{ backgroundColor: '#ffffff', borderColor: '#cccccc', color: '#000000' }} 
             />
+
+            <Bar
+              yAxisId="left"
+              dataKey="volume"
+              fill="#000000"
+              barSize={20}
+            />
+
             <Line
+              yAxisId="right"
               type="monotone"
-              dataKey="value"
+              dataKey="averagePrice"
               stroke="#008000"
-              strokeWidth={3}
-              dot={false} 
-              activeDot={{ r: 5 }}
+              strokeWidth={2}
+              dot={false}
             />
-          </LineChart>
+          </ComposedChart>
         </ResponsiveContainer>
       </div>
     </div>
