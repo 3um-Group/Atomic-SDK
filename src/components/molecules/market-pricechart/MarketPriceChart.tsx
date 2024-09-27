@@ -135,6 +135,7 @@ const MarketPriceChart: React.FC<MarketPriceChartProps> = ({ data, className }) 
     },
   };
 
+  
   return (
     <div className={`card rounded-lg text-black ${className} bg-gray-100 p-4`}>
       <div className="p-4 md:p-6">
