@@ -8,11 +8,14 @@ import {
   PointElement,
   Tooltip,
   Legend,
+  BarController,  // Import BarController
+  LineController, // Import LineController
 } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
-import React, { useEffect, useState } from 'react';
-import {
-  Chart as ChartJS,
+import dayjs from 'dayjs';
+
+// Register necessary components
+ChartJS.register(
   CategoryScale,
   LinearScale,
   BarElement,
@@ -20,28 +23,8 @@ import {
   PointElement,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { Chart } from 'react-chartjs-2';
-import dayjs from 'dayjs';
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  LineElement,
-  PointElement,
-  Tooltip,
-  Legend
-);
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  LineElement,
-  PointElement,
-  Tooltip,
-  Legend
+  BarController,  // Register BarController
+  LineController  // Register LineController
 );
 
 export interface MarketPriceChartProps {
@@ -57,7 +40,7 @@ const MarketPriceChart: React.FC<MarketPriceChartProps> = ({ data, className }) 
       setIsSmallScreen(window.innerWidth < 768);
     };
 
-    handleResize(); 
+    handleResize();
     window.addEventListener('resize', handleResize);
 
     return () => {
@@ -124,7 +107,7 @@ const MarketPriceChart: React.FC<MarketPriceChartProps> = ({ data, className }) 
         type: 'linear',
         position: 'left',
         title: {
-          display: !isSmallScreen, 
+          display: !isSmallScreen,
           text: 'Volume (ETH)',
         },
         ticks: {
@@ -141,7 +124,7 @@ const MarketPriceChart: React.FC<MarketPriceChartProps> = ({ data, className }) 
         type: 'linear',
         position: 'right',
         title: {
-          display: !isSmallScreen, 
+          display: !isSmallScreen,
           text: 'Average Price (ETH)',
         },
         ticks: {
@@ -157,15 +140,11 @@ const MarketPriceChart: React.FC<MarketPriceChartProps> = ({ data, className }) 
     },
   };
 
-  
   return (
-    <div className={`card rounded-lg text-black ${className} bg-gray-100 p-4`}>
     <div className={`card rounded-lg text-black ${className} bg-gray-100 p-4`}>
       <div className="p-4 md:p-6">
         <h3 className="text-lg md:text-xl font-bold mb-1">Price History</h3>
       </div>
-      <div className="w-full h-64">
-        <Chart type="bar" data={chartData} options={chartOptions} />
       <div className="w-full h-64">
         <Chart type="bar" data={chartData} options={chartOptions} />
       </div>
