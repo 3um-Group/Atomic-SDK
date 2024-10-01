@@ -47,7 +47,7 @@ const Header: React.FC<HeaderProps> = ({
           <Logo {...logoProps} />
         </div>
       </UI.Navbar.Start>
-      <UI.Navbar.Center className="flex items-center space-x-4">
+      <UI.Navbar.Center className="flex items-center space-x-4 ml-4">
         <SearchBar
           value=""
           onChange={() => { /* TODO: Implement onChange handler */ }}
