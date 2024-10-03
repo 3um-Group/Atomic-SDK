@@ -24,8 +24,9 @@ interface HeaderProps {
   showAuthElements?: boolean;
   logoProps: Omit<LogoProps, 'className'>;
   useAuth?: () => UseAuthResult;
-  sidebarProps?: React.ComponentProps<typeof Sidebar> & { children?: React.ReactNode };
-
+  sidebarProps?: React.ComponentProps<typeof Sidebar> & {
+    children?: React.ReactNode
+  };
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -42,6 +43,15 @@ const Header: React.FC<HeaderProps> = ({
       <UI.Navbar.Start className="flex items-center space-x-4 pl-2">
         <Sidebar {...restSidebarProps}>
           {sidebarChildren}
+          {showAuthElements && (
+          <div>
+            {isAuthenticated ? (
+              <LogoutButton onAuth={logout} />
+            ) : (
+              <LoginButton onAuth={loginWithRedirect} />
+            )}
+          </div>
+        )}
         </Sidebar>
         <div className="ml-2 mr-4">
           <Logo {...logoProps} />
@@ -53,15 +63,6 @@ const Header: React.FC<HeaderProps> = ({
           onChange={() => { /* TODO: Implement onChange handler */ }}
           onSearch={() => { /* TODO: Implement onSearch handler */ }}
         />
-        {showAuthElements && (
-          <div>
-            {isAuthenticated ? (
-              <LogoutButton onAuth={logout} />
-            ) : (
-              <LoginButton onAuth={loginWithRedirect} />
-            )}
-          </div>
-        )}
       </UI.Navbar.Center>
     </UI.Navbar>
   );
