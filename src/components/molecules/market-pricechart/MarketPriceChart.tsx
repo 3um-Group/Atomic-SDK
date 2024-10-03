@@ -8,6 +8,8 @@ import {
   PointElement,
   Tooltip,
   Legend,
+  BarController,  // Import BarController
+  LineController, // Import LineController
 } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
 import React, { useEffect, useState } from 'react';
@@ -24,6 +26,7 @@ import {
 import { Chart } from 'react-chartjs-2';
 import dayjs from 'dayjs';
 
+// Register necessary components
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -31,7 +34,9 @@ ChartJS.register(
   LineElement,
   PointElement,
   Tooltip,
-  Legend
+  Legend,
+  BarController,  // Register BarController
+  LineController  // Register LineController
 );
 
 ChartJS.register(
@@ -57,7 +62,7 @@ const MarketPriceChart: React.FC<MarketPriceChartProps> = ({ data, className }) 
       setIsSmallScreen(window.innerWidth < 768);
     };
 
-    handleResize(); 
+    handleResize();
     window.addEventListener('resize', handleResize);
 
     return () => {
@@ -124,7 +129,7 @@ const MarketPriceChart: React.FC<MarketPriceChartProps> = ({ data, className }) 
         type: 'linear',
         position: 'left',
         title: {
-          display: !isSmallScreen, 
+          display: !isSmallScreen,
           text: 'Volume (ETH)',
         },
         ticks: {
@@ -141,7 +146,7 @@ const MarketPriceChart: React.FC<MarketPriceChartProps> = ({ data, className }) 
         type: 'linear',
         position: 'right',
         title: {
-          display: !isSmallScreen, 
+          display: !isSmallScreen,
           text: 'Average Price (ETH)',
         },
         ticks: {
