@@ -1,52 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  BarElement,
   LineElement,
   PointElement,
   Tooltip,
   Legend,
-  BarController,  // Import BarController
-  LineController, // Import LineController
-} from 'chart.js';
-import { Chart } from 'react-chartjs-2';
-import React, { useEffect, useState } from 'react';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  LineElement,
-  PointElement,
-  Tooltip,
-  Legend,
+  LineController,
 } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
 import dayjs from 'dayjs';
 
-// Register necessary components
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  BarElement,
   LineElement,
   PointElement,
   Tooltip,
   Legend,
-  BarController,  // Register BarController
-  LineController  // Register LineController
-);
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  LineElement,
-  PointElement,
-  Tooltip,
-  Legend
+  LineController
 );
 
 export interface MarketPriceChartProps {
@@ -56,6 +29,7 @@ export interface MarketPriceChartProps {
 
 const MarketPriceChart: React.FC<MarketPriceChartProps> = ({ data, className }) => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const chartRef = useRef<any>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -67,6 +41,9 @@ const MarketPriceChart: React.FC<MarketPriceChartProps> = ({ data, className }) 
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      if (chartRef.current) {
+        chartRef.current.destroy();
+      }
     };
   }, []);
 
@@ -76,20 +53,28 @@ const MarketPriceChart: React.FC<MarketPriceChartProps> = ({ data, className }) 
     labels,
     datasets: [
       {
-        type: 'bar' as const,
-        label: 'Volume (ETH)',
+        type: 'line' as const,
+        label: 'Volume',
         data: data.map((item) => item.volume),
-        backgroundColor: 'black',
-        borderWidth: 1,
-        barThickness: 20,
+        borderColor: 'blue',
+        borderWidth: 2,
+        fill: false,
+        tension: 0.4,
+        pointRadius: 0, 
+        pointHoverRadius: 0, 
+        yAxisID: 'y1',
       },
       {
         type: 'line' as const,
-        label: 'Average Price (ETH)',
+        label: 'Average Price',
         data: data.map((item) => item.averagePrice),
         borderColor: 'green',
         borderWidth: 2,
         fill: false,
+        tension: 0.4,
+        pointRadius: 0, 
+        pointHoverRadius: 0, 
+        yAxisID: 'y2',
       },
     ],
   };
@@ -100,6 +85,8 @@ const MarketPriceChart: React.FC<MarketPriceChartProps> = ({ data, className }) 
     aspectRatio: 0.8,
     plugins: {
       tooltip: {
+        mode: 'index', 
+        intersect: false, 
         callbacks: {
           label: (context: any) => {
             const label = context.dataset.label || '';
@@ -109,7 +96,7 @@ const MarketPriceChart: React.FC<MarketPriceChartProps> = ({ data, className }) 
         },
       },
       legend: {
-        display: false,
+        display: false, 
       },
     },
     scales: {
@@ -125,12 +112,12 @@ const MarketPriceChart: React.FC<MarketPriceChartProps> = ({ data, className }) 
           display: false,
         },
       },
-      y: {
+      y1: {
         type: 'linear',
         position: 'left',
         title: {
           display: !isSmallScreen,
-          text: 'Volume (ETH)',
+          text: 'Volume',
         },
         ticks: {
           font: {
@@ -142,12 +129,12 @@ const MarketPriceChart: React.FC<MarketPriceChartProps> = ({ data, className }) 
           borderColor: '#ccc',
         },
       },
-      y1: {
+      y2: {
         type: 'linear',
         position: 'right',
         title: {
           display: !isSmallScreen,
-          text: 'Average Price (ETH)',
+          text: 'Average Price',
         },
         ticks: {
           font: {
@@ -164,14 +151,11 @@ const MarketPriceChart: React.FC<MarketPriceChartProps> = ({ data, className }) 
 
   return (
     <div className={`card rounded-lg text-black ${className} bg-gray-100 p-4`}>
-    <div className={`card rounded-lg text-black ${className} bg-gray-100 p-4`}>
       <div className="p-4 md:p-6">
         <h3 className="text-lg md:text-xl font-bold mb-1">Price History</h3>
       </div>
       <div className="w-full h-64">
-        <Chart type="bar" data={chartData} options={chartOptions} />
-      <div className="w-full h-64">
-        <Chart type="bar" data={chartData} options={chartOptions} />
+        <Chart ref={chartRef} type="line" data={chartData} options={chartOptions} />
       </div>
     </div>
   );
