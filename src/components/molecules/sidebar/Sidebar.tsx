@@ -10,7 +10,7 @@ export interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ children, actions }) => {
 
     return (
-        <div className="drawer z-[1]">
+        <div className="drawer z-[1]  mr-7">
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content">
                 <label htmlFor="my-drawer" className="btn btn-ghost drawer-button">
