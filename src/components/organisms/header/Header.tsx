@@ -25,7 +25,7 @@ interface HeaderProps {
   logoProps: Omit<LogoProps, 'className'>;
   useAuth?: () => UseAuthResult;
   sidebarProps?: React.ComponentProps<typeof Sidebar> & {
-    children?: React.ReactNode
+    children?: React.ReactNode;
   };
 }
 
@@ -39,29 +39,30 @@ const Header: React.FC<HeaderProps> = ({
   const { children: sidebarChildren, ...restSidebarProps } = sidebarProps || {};
 
   return (
-    <UI.Navbar className="shadow-md bg-base-100 relative z-1">
-      <UI.Navbar.Start className="flex items-center space-x-4 pl-2">
+    <UI.Navbar className="shadow-md bg-base-100 relative z-1 flex items-center p-2">
+      <UI.Navbar.Start className="flex items-center space-x-4 w-20 "> 
         <Sidebar {...restSidebarProps}>
           {sidebarChildren}
           {showAuthElements && (
-          <div>
-            {isAuthenticated ? (
-              <LogoutButton onAuth={logout} />
-            ) : (
-              <LoginButton onAuth={loginWithRedirect} />
-            )}
-          </div>
-        )}
+            <div>
+              {isAuthenticated ? (
+                <LogoutButton onAuth={logout} />
+              ) : (
+                <LoginButton onAuth={loginWithRedirect} />
+              )}
+            </div>
+          )}
         </Sidebar>
-        <div className="ml-2 mr-4">
+        <div className="flex-shrink-0">
           <Logo {...logoProps} />
         </div>
       </UI.Navbar.Start>
-      <UI.Navbar.Center className="flex items-center space-x-4 ml-4">
+      <UI.Navbar.Center className="flex-grow ml-5"> 
         <SearchBar
           value=""
           onChange={() => { /* TODO: Implement onChange handler */ }}
           onSearch={() => { /* TODO: Implement onSearch handler */ }}
+          className="w-full" 
         />
       </UI.Navbar.Center>
     </UI.Navbar>
