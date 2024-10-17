@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as UI from 'react-daisyui';
 import Logo, { LogoProps } from '../../atoms/logo/Logo';
 import { LoginButton, LogoutButton } from '../../molecules/auth-elements/AuthElements';
@@ -37,10 +37,35 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuthProp();
   const { children: sidebarChildren, ...restSidebarProps } = sidebarProps || {};
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [filteredResults, setFilteredResults] = useState<any[]>([]);
+
+  const data = [
+    { id: 1, name: 'Apple' },
+    { id: 2, name: 'Banana' },
+    { id: 3, name: 'Cherry' },
+    { id: 4, name: 'Date' },
+    { id: 5, name: 'Elderberry' }
+  ];
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+
+    const results = data.filter(item =>
+      item.name.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredResults(results);
+  };
+
+  const handleSearch = () => {
+    console.log('Search triggered for:', searchQuery);
+    // TODO: add extra logic here for submitting or finalizing the search
+  };
 
   return (
     <UI.Navbar className="shadow-md bg-base-100 relative z-1 flex items-center p-2">
-      <UI.Navbar.Start className="flex items-center space-x-4 w-20 "> 
+      <UI.Navbar.Start className="flex items-center space-x-4 w-20"> 
         <Sidebar {...restSidebarProps}>
           {sidebarChildren}
           {showAuthElements && (
@@ -57,14 +82,23 @@ const Header: React.FC<HeaderProps> = ({
           <Logo {...logoProps} />
         </div>
       </UI.Navbar.Start>
-      <UI.Navbar.Center className="flex-grow ml-5"> 
+
+      <UI.Navbar.Center className="flex-grow ml-5">
         <SearchBar
-          value=""
-          onChange={() => { /* TODO: Implement onChange handler */ }}
-          onSearch={() => { /* TODO: Implement onSearch handler */ }}
-          className="w-full" 
+          value={searchQuery}
+          onChange={handleSearchChange}
+          onSearch={handleSearch}
+          className="w-full"
         />
       </UI.Navbar.Center>
+
+      <div className="search-results">
+        <ul>
+          {filteredResults.map(result => (
+            <li key={result.id}>{result.name}</li>
+          ))}
+        </ul>
+      </div>
     </UI.Navbar>
   );
 };
